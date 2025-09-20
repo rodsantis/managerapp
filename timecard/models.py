@@ -51,3 +51,13 @@ class Employee(models.Model):
 
     def __str__(self):
         return f"{self.employee_name} {self.employee_surname} - {self.employee_role} {self.employee_skill} {self.employee_market}"
+    
+
+class PunchIn(models.Model):
+    employee_project_id = models.ForeignKey(Employee, on_delete=models.PROTECT, related_name='employee_project_id_punch_in')
+    punched_in = models.DateTimeField(auto_now_add=True)
+
+
+class PunchOut(models.Model):
+    employee_project_id = models.ForeignKey(Employee, on_delete=models.PROTECT, related_name='employee_project_id_punch_out')
+    punched_out = models.DateTimeField(auto_now_add=True)
